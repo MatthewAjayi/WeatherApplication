@@ -1,0 +1,74 @@
+﻿@model WeatherApplication.Models.WeatherData
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<h2>Search for weather information</h2>
+<hr />*@
+<form class="row g-3" style="margin-top:10px" action=@Url.Action("Index", "Home") method="post">
+    <div class="col-auto">
+        <label for="Search city" class="visually-hidden">Search for city</label>
+        <input class="form-control" id="searchinput" name="searchInput" placeholder="Search for city">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Search <i class="bi bi-search"></i></button>
+    </div>
+</form>
+
+
+@if (Model != null)
+{
+    <h4 style="margin-bottom: 20px;">Weather Forecast for @Model.Location.Name, @Model.Location.Region</h4>
+    <hr />
+    <div class="container">
+        <div class="row mx-auto" style="width: 80%;">
+            @foreach (var forecastday in Model.Forecast.Forecastday)
+            {
+                <div class="col-sm-4">
+                    <div class="card" style="margin-bottom:20px;">
+                        <div class="card-body text-bg-info">
+                            <img src="https:@forecastday.Day.Condition.Icon" class="mx-auto d-block" alt="Weather Icon">
+                            <hr />
+                            <p class="card-text">
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Location.Name):
+                                </strong>
+                                 @Html.DisplayFor(model => model.Location.Name)
+                            </p>
+                            <p class="card-text">
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Location.Region):
+                                </strong>
+                                @Html.DisplayFor(model => model.Location.Region)
+                            </p>
+                            <p class="card-text">
+                                <strong>
+                                    @Html.DisplayNameFor(model => model.Location.Country):
+                                </strong>
+                                @Html.DisplayFor(model => model.Location.Country)
+                            </p>
+                            <p class="card-text">
+                                <strong>
+                                    Date:
+                                </strong>
+                                @forecastday.Date
+                            </p>
+                            <p class="card-text">
+                                <strong>
+                                    Average Temperature (°C):
+                                </strong>
+                                @forecastday.Day.Avgtemp_c
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
