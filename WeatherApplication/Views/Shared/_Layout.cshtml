@@ -8,30 +8,44 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Weather Application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">Weather Application</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
+            @*<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a href="@Url.Action("Register", "Home")" class="nav-link text-light">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="@Url.Action("Login", "Home")" class="nav-link text-light">Login</a>
+                        </li>
+                    </ul>
+                </div>*@
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    <div class="container-fluid">
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+
+        <footer class="fixed-bottom bg-light text-center">
+            <p>&copy; @DateTime.Now.Year - Weather Application</p>
         </footer>
     </div>
-
+    <style>
+        .fixed-bottom {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            background-color: #f8f9fa;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

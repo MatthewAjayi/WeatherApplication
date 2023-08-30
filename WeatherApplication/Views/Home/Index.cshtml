@@ -4,8 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-@*<h2>Search for weather information</h2>
-<hr />*@
 <form class="row g-3" style="margin-top:10px" action=@Url.Action("Index", "Home") method="post">
     <div class="col-auto">
         <label for="Search city" class="visually-hidden">Search for city</label>
@@ -21,7 +19,7 @@
 {
     <h4 style="margin-bottom: 20px;">Weather Forecast for @Model.Location.Name, @Model.Location.Region</h4>
     <hr />
-    <div class="container">
+    <div class="container" style="margin-bottom:100px;">
         <div class="row mx-auto" style="width: 80%;">
             @foreach (var forecastday in Model.Forecast.Forecastday)
             {
