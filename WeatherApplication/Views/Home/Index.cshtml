@@ -17,22 +17,24 @@
 
 @if (Model != null)
 {
-    <h4 style="margin-bottom: 20px;">Weather Forecast for @Model.Location.Name, @Model.Location.Region</h4>
+    @*<h4 style="margin-bottom: 20px;">Weather Forecast for @Model.Location.Name, @Model.Location.Region</h4>*@
     <hr />
     <div class="container" style="margin-bottom:100px;">
         <div class="row mx-auto" style="width: 80%;">
             @foreach (var forecastday in Model.Forecast.Forecastday)
             {
                 <div class="col-sm-4">
-                    <div class="card" style="margin-bottom:20px;">
+                    <div class="card" style="margin-bottom:20px; text-align:center;">
                         <div class="card-body text-bg-info">
+                            <h5>@Model.Location.Name</h5>
+                            <h7>@forecastday.Day.Condition.Text</h7>
                             <img src="https:@forecastday.Day.Condition.Icon" class="mx-auto d-block" alt="Weather Icon">
-                            <hr />
-                            <p class="card-text">
+                            @*<hr />*@
+                            @*<p class="card-text">
                                 <strong>
                                     @Html.DisplayNameFor(model => model.Location.Name):
                                 </strong>
-                                 @Html.DisplayFor(model => model.Location.Name)
+                                @Html.DisplayFor(model => model.Location.Name)
                             </p>
                             <p class="card-text">
                                 <strong>
@@ -45,19 +47,25 @@
                                     @Html.DisplayNameFor(model => model.Location.Country):
                                 </strong>
                                 @Html.DisplayFor(model => model.Location.Country)
-                            </p>
+                            </p>*@
+                            <h5 class="card-text">    
+                                @forecastday.Day.Avgtemp_c °C
+                            </h5>
+                            <h5 class="card-text">
+                                    Max (°C):
+                                @forecastday.Day.Maxtemp_c
+                            </h5>
+                            <h5 class="card-text">
+                                    Min (°C):
+                                @forecastday.Day.Mintemp_c
+                            </h5>
                             <p class="card-text">
                                 <strong>
                                     Date:
                                 </strong>
                                 @forecastday.Date
                             </p>
-                            <p class="card-text">
-                                <strong>
-                                    Average Temperature (°C):
-                                </strong>
-                                @forecastday.Day.Avgtemp_c
-                            </p>
+                            
                         </div>
                     </div>
                 </div>
